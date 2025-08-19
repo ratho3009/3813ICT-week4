@@ -1,59 +1,57 @@
-# Week4
+# 3813ICT - Week 4 Tutorial
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.5.
+This repository contains the Angular project for **Workshop 4 – Angular, Models and Functions**.  
+The goal of this lab was to build a simple Angular front-end with routing, forms, and basic login functionality.
 
-## Development server
+---
 
-To start a local development server, run:
+## Features
+- Angular standalone components (Home, Login, Profile)
+- Bootstrap navbar with routing
+- Hardcoded users validated on login
+- Redirect to Profile page on successful login
 
+
+---
+
+## Commands Used
+
+### 1. Create the app
+```bash
+ng new week4
+```
+
+### 2. Install dependencies
+```bash
+npm install bootstrap --save
+```
+
+### 3. Generate new components
+```bash
+ng generate component home --standalone
+ng generate component login --standalone
+ng generate component profile --standalone
+```
+
+### 4. Serve the application
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## How to Run
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/<your-username>/3813ICT-week4.git
+   cd 3813ICT-week4
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the application:
+   ```bash
+   ng serve
+   ```
+4. Open [http://localhost:4200](http://localhost:4200) in your browser.

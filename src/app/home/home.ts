@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-home',
-  standalone: true,         // <-- Legg til denne
+  standalone: true,        
   imports: [],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
-export class HomeComponent {  // <-- Endre navn
+export class HomeComponent {  
 }
