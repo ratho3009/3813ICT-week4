@@ -32,11 +32,22 @@ export class LoginComponent {
     );
 
     if (foundUser) {
+      // Save a “public” profile to localStorage (no password)
+      const publicUser = {
+        email: foundUser.email,
+        username: foundUser.email.split('@')[0], // optional username from email
+        valid: true
+      };
+      localStorage.setItem('currentUser', JSON.stringify(publicUser));
+    
       // Redirect to profile if match
       this.router.navigate(['/profile']);
     } else {
-      // show errer if no match
+      // Show error if no match
       this.error = 'Feil e-post eller passord. Prøv igjen.';
+      localStorage.removeItem('currentUser');
     }
+    
+    
   }
 }

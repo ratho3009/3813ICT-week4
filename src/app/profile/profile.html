@@ -1,2 +1,10 @@
-<h1>ProfilePage</h1>
-<img src="https://picsum.photos/600/300" class="img-fluid rounded shadow-sm" alt="Profile image">
+<div class="container mt-4" *ngIf="user">
+    <h1>Welcome, {{ user.username }}!</h1>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Valid user:</strong> {{ user.valid }}</p>
+  
+    <img src="https://picsum.photos/600/300"
+         class="img-fluid rounded shadow-sm mt-3"
+         alt="Profile image">
+  </div>
+  
