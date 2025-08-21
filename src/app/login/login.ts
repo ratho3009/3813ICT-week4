@@ -1,53 +1,53 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';  
 import { Router } from '@angular/router';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule],        
+  imports: [CommonModule, FormsModule, HttpClientModule],
   templateUrl: './login.html',
-  styleUrl: './login.css'
+  styleUrls: ['./login.css'] 
 })
 export class LoginComponent {
   email = '';
   password = '';
   error = '';
 
-  // hardcoded users
-  private users = [
-    { email: 'rasmus@example.com', password: 'rasmus123' },
-    { email: 'chungus@gmail.com', password: '123' },
-    { email: 'seal@example.com', password: 'seal' }
-  ];
 
-  constructor(private router: Router) {}
+  private AUTH_URL = 'http://localhost:3000/api/auth';
+
+
+  constructor(private http: HttpClient, private router: Router) {}
 
   login() {
     this.error = '';
 
-    const foundUser = this.users.find(
-      u => u.email === this.email && u.password === this.password
-    );
-
-    if (foundUser) {
-      // Save a “public” profile to localStorage (no password)
-      const publicUser = {
-        email: foundUser.email,
-        username: foundUser.email.split('@')[0], // optional username from email
-        valid: true
-      };
-      localStorage.setItem('currentUser', JSON.stringify(publicUser));
-    
-      // Redirect to profile if match
-      this.router.navigate(['/profile']);
-    } else {
-      // Show error if no match
-      this.error = 'Feil e-post eller passord. Prøv igjen.';
-      localStorage.removeItem('currentUser');
-    }
-    
-    
+    this.http.post<any>(this.AUTH_URL, {
+      email: this.email,
+      password: this.password
+    }).subscribe({
+      next: (res) => {
+        if (res?.valid) {
+          const publicUser = {
+            email: res.email,
+            username: res.username ?? (res.email?.split('@')[0] ?? ''),
+            birthdate: res.birthdate ?? '',
+            age: res.age ?? undefined,
+            valid: true
+          };
+          localStorage.setItem('currentUser', JSON.stringify(publicUser));
+          this.router.navigate(['/profile']);
+        } else {
+          this.error = 'wrong email or password. try again';
+          localStorage.removeItem('currentUser');
+        }
+      },
+      error: () => {
+        this.error = 'server error. please try again later.';
+      }
+    });
   }
 }

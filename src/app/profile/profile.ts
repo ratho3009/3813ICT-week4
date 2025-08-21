@@ -36,7 +36,7 @@ export class ProfileComponent implements OnInit {
 
   save(): void {
     if (!this.user) return;
-    // NB: lagrer fortsatt bare “public” felter (ingen passord)
+    // NB: only saves “public” fields (not password)
     localStorage.setItem('currentUser', JSON.stringify(this.user));
     this.saved = true;
     setTimeout(() => (this.saved = false), 1500);
